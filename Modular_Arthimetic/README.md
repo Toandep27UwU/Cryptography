@@ -10,8 +10,9 @@ d=UC(a,b)=UC(a,a-b)=UC(b,a-b)
 ```
 - Tuy nhiên để rút ngắn việc phải trừ $a$ nhiều lần $b$ thì ta sẽ thay thể bằng cách tìm số dư của $a$ chia cho $b$.
 ```math
-a\ -\ \lfloor \frac{a}{b} \rfloor\ .\ b\ =\ a\ mod\ b\ 
+a\ -\ \lfloor \frac{a}{b} \rfloor\ .\ b\ =\ a\ (mod \ b)
 ```
+
 - Từ đó sau các vòng thì:
 ```math
 \begin{cases}
@@ -21,13 +22,14 @@ b = a \% b
 ```
 - Dưới đây là ví dụ khi tìm $GCD(260,36)$:
 <center>
-
+	
 | a | b | a%b | 
 | :---: | :---: | :---: |
 | 260 | 36 | 8 |
 | 36 | 8 | 4 |
 | 8 | 4 | 0 |
 | 4 | 0 | None  |
+
 </center>
 
 **3. Thuật toán sử dụng Python**
@@ -113,11 +115,11 @@ a \equiv 0\ (mod\ p)\\
 ```
 - Nếu $(a,p)=1$ :
     - $(1,p),(2,p),(3,p),...,(p-1,p) = 1 \Rightarrow (a,p),(2a,p),(3a,p),...,((p-1)a,p)=1 $
-    - Chứng minh: $\ \forall m,n | 1 \le m \le n \le p-1 $ thì $ma \equiv na \ (mod\ p)$ là không thể xảy ra 
-        - vì nếu $ ma \equiv na \ (mod\ p) $
+    - Chứng minh: $\forall m,n | 1 \le m \le n \le p-1$ thì $ma \equiv na \ (mod\ p)$ là không thể xảy ra 
+        - vì nếu $ma \equiv na \ (mod\ p)$
         - $\Rightarrow a(m-n)\equiv 0\ (mod\ p)$
-        - $ \Rightarrow m \equiv n\ (mod\ p)$
-        - $ \Rightarrow $ Vô lý 
+        - $\Rightarrow m \equiv n\ (mod\ p)$
+        - $\Rightarrow$ Vô lý 
     - Từ đó có :
 ```math
 a^{p-1}.(p-1)!\equiv(p-1)!\ (mod \ p)\\
@@ -137,7 +139,7 @@ a.a^{-1}\equiv 1\ (mod\ m)
 ```math
 a.x+m.y=1
 ```
-- Lấy $mod\ m $ cả 2 vế:
+- Lấy $mod\ m$ cả 2 vế:
 ```math
 a.x\equiv1(mod\ m)
 ```
@@ -179,7 +181,7 @@ def binary_de_quy(num: int, expo : int) -> int:
 ---
 ## Thặng dư bậc hai
 **1. Giới thiệu**
-- Cho $a \in \mathbb{Z} $ ta nói $a$ là thặng dư bậc hai nếu tồn tại $x$ sao cho $x^2 \equiv a \ (mod\ p)$.
+- Cho $a \in \mathbb{Z}$ ta nói $a$ là thặng dư bậc hai nếu tồn tại $x$ sao cho $x^2 \equiv a \ (mod\ p)$.
 - Ngược lại nếu không tồn tại $x$ thì ta sẽ gọi $a$ là phi thặng dư bậc hai.
 
 **2. Tính chất**
@@ -243,7 +245,7 @@ a^{\frac{p-1}{2}}.a=a^{\frac{p+1}{2}}=a^{\frac{4k+4}{2}}=a^{2k+2}=(a^{(k+1)})^2 
         - Tìm số $i$ nhỏ nhất sao cho $t^{2^i} \equiv -1\ (mod\ p)$ , $i$ sẽ nằm trong $[0,M-1]$
         - Ta sử dụng $g$ với $g^{2^s} \equiv 1\ (mod \ p)$
         - Tính $b = g^{2^{s-i-1}}\ mod\ p$, khi đó $b^{2^{i+1}} \equiv g^{2^s} \equiv 1 \ (mod\ p)$ nên $b^{2^i} \equiv -1\ (mod \ p)$
-        - Tiếp theo ta gán $R = R.b (mod \ p)$ và $ t = t.b.b\ (mod\ p)$
+        - Tiếp theo ta gán $R = R.b (mod \ p)$ và $t = t.b.b\ (mod\ p)$
         - Sau khi gán, ta có thể giảm $M$ xuống $i$ và lặp lại chu trình đó cho đến khi $t=1$ thì $x=R$
 
 ```Python
@@ -305,7 +307,7 @@ x = \sum_{i=1}^n a_i.b_i.b_i^{'}\ (mod\ M)
 ```
 **2. Cách xây dựng**
 - Ta xây dựng nghiệm $x$ theo tổng của các số hạng $t_i$ và $t_i$ đáp ứng các tiêu chí:
-    - Đáp ứng phương trình chính nó :$\ t_i \equiv a_i \ (mod\ m_i)$
+    - Đáp ứng phương trình chính nó : $t_i \equiv a_i(mod\ m_i)$
     - Là tích của các module $m_j$ với $j \ne i$ để tránh trường hợp trùng đồng dư với các $t_j$ khác
 ```math
 t_i \equiv a_i\ (mod\ m_i)\\
